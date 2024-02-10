@@ -7,6 +7,14 @@ round(summary(galton_fit)$coef,3)
 galton_fit <- lm(childHeight ~ 0 + midparentHeight, data=GaltonFamilies)
 summary(galton_fit)
 
+# Confidence and Prediction
+new_mph <- seq(60, 80, by=0.5) # = Python's arange, inclusive of endpoints
+new_data <- data.frame(midparentHeight = new_mph)
+new_ci <- predict(galton_fit, new_data, interval="confidence")
+new_pi <- predict(galton_fit, new_data, interval="prediction")
+head(new_ci, 3)
+head(new_pi, 3) # same point estimate, wider interval
+
 # Hand generated R^2
 n <- nrow(GaltonFamilies)
 p <- 2
