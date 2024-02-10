@@ -1,3 +1,5 @@
+library("car")
+
 # Linear regression (with intercept)
 galton_fit <- lm(childHeight ~ midparentHeight, data=GaltonFamilies)
 summary(galton_fit)
@@ -14,6 +16,9 @@ new_ci <- predict(galton_fit, new_data, interval="confidence")
 new_pi <- predict(galton_fit, new_data, interval="prediction")
 head(new_ci, 3)
 head(new_pi, 3) # same point estimate, wider interval
+
+# Testing restricted model
+linearHypothesis(lalonde_fit, c("age=0", "educ=0", "black=0", "hisp=0", "married=0", "nodegr=0", "re74=0", "re75=0", "u74=0", "u75=0"))
 
 # Hand generated R^2
 n <- nrow(GaltonFamilies)
@@ -54,3 +59,4 @@ Cb <- C%*%betahat
 Fstat <- Cb%*%solve(C%*%solve(t(X)%*%X)%*%t(C))%*%t(Cb)/(sigmahat^2)
 Fstat # F-statistic
 pf(Fstat, p-1, n-p, lower.tail=F) # P[F > f]
+
