@@ -33,3 +33,9 @@ for(i in 1:p){
 for(i in 1:p){
   print(2*pt(betahat[i]/(sigmahat*sqrt(solve(t(X)%*%X)[i, i])), n-p, lower.tail = FALSE)) # Pr[>|t|] = 0
 }
+
+C <- t(rbind(rep(0, p - 1), diag(p - 1)))
+Cb <- C%*%betahat
+Fstat <- Cb%*%solve(C%*%solve(t(X)%*%X)%*%t(C))%*%t(Cb)/(sigmahat^2)
+Fstat # F-statistic
+pf(Fstat, p-1, n-p, lower.tail=F) # P[F > f]
