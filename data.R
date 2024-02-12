@@ -1,1 +1,3 @@
-COMBINE = read . table (" combine _ data . txt ", header = TRUE )[, -1]
+combine <- read.table("combine_data.txt", header=T)[, -1]
+names(fda)
+head(fda, 5)
