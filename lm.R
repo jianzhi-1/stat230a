@@ -60,3 +60,5 @@ Fstat <- Cb%*%solve(C%*%solve(t(X)%*%X)%*%t(C))%*%t(Cb)/(sigmahat^2)
 Fstat # F-statistic
 pf(Fstat, p-1, n-p, lower.tail=F) # P[F > f]
 
+lm7 <- lm(sum ~ un_per_l*election_av  + gdp_r_wk +gg_oecd_l + libor_l + mg_l + factor(country) + factor(year), data=dat)
+
